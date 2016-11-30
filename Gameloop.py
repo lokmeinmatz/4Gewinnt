@@ -1,8 +1,3 @@
-#entwickelt von Matthias und Marcel
-#copyright 2016
-#---------------------------------------
-
-
 import random
 random.seed()
 
