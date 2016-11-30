@@ -1,3 +1,4 @@
+- [ ] Kaffemaschiene für den Inf-Raum kaufen
 - [ ] die Klassen planen
       Idee: 1. Main-GameLoop
             2. Playerclass
