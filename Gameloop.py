@@ -1,14 +1,15 @@
 import random
 random.seed()
 
-Nothing=ord('.')
-Player1=ord('O')
-Player2=ord('X')
-Player1has4='OOOO'
-Player2has4='XXXX'
-Player1Wins='human wins'
-Player2Wins='computer wins'
-Player2Take='computer takes '
+Nix=ord('.')
+Spieler1=ord('O')
+Spieler2=ord('X')
+#https://docs.python.org/3/library/functions.html#ord
+Spieler1has4='OOOO'
+Spieler2has4='XXXX'
+Spieler1Wins='human wins'
+Spieler2Wins='computer wins'
+Spieler2Take='computer takes '
 DirectionHorizontal='horizontal' 
 DirectionVertical  ='vertical'
 DirectionDiagonal  ='diagonal'
@@ -26,7 +27,7 @@ def ClearA():                       # clear the play field wich is stored in arr
     for x in range(7):
         ColumnHeigth[x]=0
         for y in range(6):
-            A[x][y]=Nothing
+            A[x][y]=Nix
     return
 
 def PrintA():                       # print the play field wich is stored in array A
@@ -51,7 +52,7 @@ def IsColumnOK(Column):              # valid column 1..7 ?  and column is not fu
              OK=True
     return OK
 
-def SetAbove(Column,Value):          # drop the play stone in a column and increase column heigth ... Value : Player1 or Player2 
+def SetAbove(Column,Value):          # drop the play stone in a column and increase column heigth ... Value : Spieler1 or Spieler2 
     OK=IsColumnOK(Column)
     if OK==True: 
        AboveRow=ColumnHeigth[Column-1]
@@ -66,15 +67,15 @@ def IsColumnEmpty(Column):
 ########################### Find 4 to check if someone has won ########################################
 
 def Has4(String):                  #  find  'XXXX' or 'OOOO'  in a string
-    Result=-1                      #  return Player1 or Player2 or -1 
-    if Player1has4 in String:
-       Result=Player1
-    if Player2has4 in String:
-       Result=Player2
+    Result=-1                      #  return Spieler1 or Spieler2 or -1 
+    if Spieler1has4 in String:
+       Result=Spieler1
+    if Spieler2has4 in String:
+       Result=Spieler2
     return Result
 
 def Horizontal():                  #   make Array a 7 character string like 'O.XXXXO' to find 4 in one row
-    Result=-1                      #   return Player1 or Player2 or -1
+    Result=-1                      #   return Spieler1 or Spieler2 or -1
     for y in range(6):
         s=''
         for x in range(7):         
@@ -85,7 +86,7 @@ def Horizontal():                  #   make Array a 7 character string like 'O.X
     return Result     
 
 def Vertical():                    #   make Array a 6 character string like '.OOOOX' to find 4 in one column
-    Result=-1                      #   return Player1 or Player2 or -1
+    Result=-1                      #   return Spieler1 or Spieler2 or -1
     for x in range(7):
         s=''
         for y in range(6):        
@@ -96,7 +97,7 @@ def Vertical():                    #   make Array a 6 character string like '.OO
     return Result  
 
 def Diagonal():                   #   make Array a 4 character string like 'XXXX' to find 4 diagonal
-    Result=-1                     #   return Player1 or Player2 or -1      
+    Result=-1                     #   return Spieler1 or Spieler2 or -1      
     for x in range(4):           
         for y in range(3):
             s=chr(A[x][y])+chr(A[x+1][y+1])+chr(A[x+2][y+2])+chr(A[x+3][y+3]) # diagonal left downside to rigth upside
@@ -111,7 +112,7 @@ def Diagonal():                   #   make Array a 4 character string like 'XXXX
            break 
     return Result
 
-def HasSomeoneWon():  # if one Players has won : return Player1 or Player2 , else return -1, and return Direction in wich he won
+def HasSomeoneWon():  # if one Spielers has won : return Spieler1 or Spieler2 , else return -1, and return Direction in wich he won
     Direction=0
     Winner=Horizontal()
     if Winner>0:
@@ -165,27 +166,27 @@ def restore(Deep):
     return
 
 # Set temporary a playstone to check if the computer move will make him or the human win. Rate the move in BestColumn[]
-def CheckWinAndIncBestColumn(move,column,Player):
+def CheckWinAndIncBestColumn(move,column,Spieler):
     global ColumnOfMove1
     global ColumnOfMove2
     global ColumnOfMove3
     global ColumnOfMove4
 
-    OK=SetAbove(column,Player)
+    OK=SetAbove(column,Spieler)
     if OK==True: 
        [Winner,Direction]=HasSomeoneWon()
 
        if move==1:                               
           ColumnOfMove1=column
-          if Winner==Player2:
+          if Winner==Spieler2:
              BestColumn[ColumnOfMove1-1]+=1000000  # Computer wins on first move ? that is the best Column he can ever get !
              return   
-          if Winner==Player1:
+          if Winner==Spieler1:
              BestColumn[ColumnOfMove1-1]-=10000
       
        if move==2:                                   
           ColumnOfMove2=column                                  
-          if Winner==Player1:
+          if Winner==Spieler1:
              if ColumnOfMove1!=ColumnOfMove2:
                 BestColumn[ColumnOfMove2-1]+=10000 # Human wins on second move after computer has choosen an other column before
              if ColumnOfMove1==ColumnOfMove2:
@@ -193,16 +194,16 @@ def CheckWinAndIncBestColumn(move,column,Player):
 
        if move==3:                                
           ColumnOfMove3=column                   
-          if Winner==Player1:                     
+          if Winner==Spieler1:                     
              BestColumn[ColumnOfMove1-1]-=100
-          if Winner==Player2:                     
+          if Winner==Spieler2:                     
              BestColumn[ColumnOfMove1-1]+=100
 
        if move==4:                                
           ColumnOfMove4=column                   
-          if Winner==Player1:                     
+          if Winner==Spieler1:                     
              BestColumn[ColumnOfMove1-1]-=1
-          if Winner==Player2:                     
+          if Winner==Spieler2:                     
              BestColumn[ColumnOfMove1-1]+=1
 
        if move==2:                                 # Next move for Computer and then test again what Human can do...
@@ -211,20 +212,20 @@ def CheckWinAndIncBestColumn(move,column,Player):
              restore(move)                         # restore original playfield afterwards
 
     #----- reset if Human -----
-    if Player==Player1:                            # Human : restore his move after testing 
+    if Spieler==Spieler1:                            # Human : restore his move after testing 
        Row=ColumnHeigth[column-1] 
-       A[column-1][Row-1]=Nothing                  
+       A[column-1][Row-1]=Nix                  
        ColumnHeigth[column-1]=Row-1
     return
 
 def CheckAndRate(move):
-    # Begin with Player2 to move,let his playstone there till all combinations of Player1 afterwards has checked
+    # Begin with Spieler2 to move,let his playstone there till all combinations of Spieler1 afterwards has checked
     for Cp2 in range(7): 
         column2=Cp2+1
-        CheckWinAndIncBestColumn(move+1,column2,Player2)     # Rating of the Computer move by checking someone has won
+        CheckWinAndIncBestColumn(move+1,column2,Spieler2)     # Rating of the Computer move by checking someone has won
         for Cp1 in range(7):
             column1=Cp1+1                    
-            CheckWinAndIncBestColumn(move+2,column1,Player1) # Rating of the Human move by checking someone has won
+            CheckWinAndIncBestColumn(move+2,column1,Spieler1) # Rating of the Human move by checking someone has won
         restore(move)                                        # Computer : restore his move after testing 
     return
 
@@ -245,7 +246,7 @@ def ComputerMove():                          # **** let the computer calculate h
            BestColumn[x]=0  
               
        save(0)                               # make a copy of playfield to restore it later
-       CheckAndRate(0)                       # Try out move 1..7 of Player2 and then move 1..7 of Player1
+       CheckAndRate(0)                       # Try out move 1..7 of Spieler2 and then move 1..7 of Spieler1
        restore(0)                            # restore original playfield
 
 
@@ -280,32 +281,32 @@ def ComputerMove():                          # **** let the computer calculate h
 
 ClearA()                                 # Clear the play field Array
 PrintA()
-Player=random.choice([Player1,Player2])  # who of the Players will begin ?
+Spieler=random.choice([Spieler1,Spieler2])  # who of the Spieler will begin ?
 
 Moves=7*6
 while Moves>0:
-      if Player==Player1:
+      if Spieler==Spieler1:
          Column=HumanMove()
-         OK=SetAbove(Column,Player1)     # set the play stone of human move
+         OK=SetAbove(Column,Spieler1)     # set the play stone of human move
          if OK==False:
             print(ErrorMessage+str(Column))
          else: 
-            Player=Player2
+            Spieler=Spieler2
       else:
          Column=ComputerMove()
-         OK=SetAbove(Column,Player2)        # set the play stone of computer move
-         print(Player2Take+str(Column)) 
+         OK=SetAbove(Column,Spieler2)        # set the play stone of computer move
+         print(Spieler2Take+str(Column)) 
          if OK==False:
             print(ErrorMessage+str(Column))
          else: 
-            Player=Player1
+            Spieler=Spieler1
       PrintA()                           # print the playfield
       [Winner,Direction]=HasSomeoneWon()
-      if Winner==Player1:                # someone is the winner ? --> print winner and exit the program
-         print(Player1Wins+' , '+Direction)
+      if Winner==Spieler1:                # someone is the winner ? --> print winner and exit the program
+         print(Spieler1Wins+' , '+Direction)
          exit() 
-      if Winner==Player2:
-         print(Player2Wins+' , '+Direction)
+      if Winner==Spieler2:
+         print(Spieler2Wins+' , '+Direction)
          exit()               
       Moves-=1                           # exit the program when 42 moves are done, play field is full (Remis)
 
