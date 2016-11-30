@@ -11,3 +11,5 @@
 - [ ] zusammenführen
 - [ ] Testen + evtl Fehler korregieren
 - [ ] Fertig!!!
+- [ ]Kekse kaufen
+
