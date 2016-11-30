@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding:utf-8
 
-# 2011-2015 by Bernd Dietzel
-# https://www.youtube.com/watch?v=XOga3EhS59c
-
 import random
 random.seed()
 
