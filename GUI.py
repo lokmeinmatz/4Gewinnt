@@ -25,10 +25,4 @@ class gui:
         self.window.mainloop()
         # macht hinzufuegenbuttons
         #for
-        
-        
-        
-        
-        
-        
 window = gui(5, 1, "Peter", "Kevin")
