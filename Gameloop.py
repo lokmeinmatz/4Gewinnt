@@ -9,14 +9,14 @@ Spieler1has4='OOOO'
 Spieler2has4='XXXX'
 Spieler1Wins='human wins'
 Spieler2Wins='computer wins'
-Spieler2Take='computer takes '
+Spieler2Nimmt='computer Nimmts '
 DirectionHorizontal='horizontal' 
 DirectionVertical  ='vertical'
 DirectionDiagonal  ='diagonal'
-ErrorMessage='Error on setting Column to '
+Fehlermeldung='Fehler beim setzen der Spalte'
 RatingString='Rating :  '
 
-# The play field , size: 7 Columns x 6 Rows
+
 A=[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]
 # How high a column is filled with stones. Heigth (Row) = 1..6
 ColumnHeigth =[0,0,0,0,0,0,0]
@@ -141,12 +141,12 @@ def HumanMove():           # get and check input from the human in a terminal , 
 
 def RandomColumn():                   # get a random column wich is not already full
     Column=0
-    if Moves>(7*6)-3:                 # at the first move take a column somewhere in the middle of the play field
+    if Moves>(7*6)-3:                 # at the first move Nimmt a column somewhere in the middle of the play field
        Empty=False                    # to not give human the chance to make somewhat like this :  X.OOO.X
        while Empty==False:
              Column=random.choice([3,4,5])
              Empty=IsColumnEmpty(Column) 
-    else:                             # after the first moves take any column who is free  
+    else:                             # after the first moves Nimmt any column who is free  
        while IsColumnOK(Column)==False:
              Column=random.choice([1,2,3,4,5,6,7])
     return Column
@@ -272,7 +272,7 @@ def ComputerMove():                          # **** let the computer calculate h
                 if IsColumnOK(Column)==True:
                    break
 
-       if IsColumnOK(Column)==False:         # no choice ? take someting random
+       if IsColumnOK(Column)==False:         # no choice ? Nimmt someting random
           Column=RandomColumn()
 
     return Column
@@ -289,15 +289,15 @@ while Moves>0:
          Column=HumanMove()
          OK=SetAbove(Column,Spieler1)     # set the play stone of human move
          if OK==False:
-            print(ErrorMessage+str(Column))
+            print(Fehlermeldung+str(Column))
          else: 
             Spieler=Spieler2
       else:
          Column=ComputerMove()
          OK=SetAbove(Column,Spieler2)        # set the play stone of computer move
-         print(Spieler2Take+str(Column)) 
+         print(Spieler2Nimmt+str(Column)) 
          if OK==False:
-            print(ErrorMessage+str(Column))
+            print(Fehlermeldung+str(Column))
          else: 
             Spieler=Spieler1
       PrintA()                           # print the playfield
