@@ -75,7 +75,7 @@ class gui:
 
                 self.setCoin(xx, yy, 0)
 
-        self.setCoin(2, 3, 1)
+        
 
         self.window.mainloop()
 
