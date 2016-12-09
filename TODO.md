@@ -7,7 +7,7 @@
             5. einer denkt sich die Logik aus
       
       
-- [ ] Aufteilen (wer macht was)
+- [X] Aufteilen (wer macht was)
 - [ ] Programmieren
 - [ ] zusammenführen
 - [ ] Testen + evtl Fehler korregieren
