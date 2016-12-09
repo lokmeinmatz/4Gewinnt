@@ -44,7 +44,7 @@ class gui:
         self.sp2color = spieler2farbe
         self.window = tk.Tk()
         self.window.title("© Mohhamad Karimba")
-
+        self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+spieler1name+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
         self.buttonframe = tk.Frame(self.window, width=x*50*self.scale)
