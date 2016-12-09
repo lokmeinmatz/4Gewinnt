@@ -43,7 +43,7 @@ class gui:
         self.sp1color = spieler1farbe
         self.sp2color = spieler2farbe
         self.window = tk.Tk()
-        self.window.title("Bestes Spiel")
+        self.window.title("© Mohhamad Karimba")
 
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+spieler1name+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
