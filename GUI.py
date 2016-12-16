@@ -63,7 +63,7 @@ class gui:
         self.sp1color = spieler1farbe
         self.sp2color = spieler2farbe
         self.window = tk.Tk()
-        self.window.title("© Alarm für Cobra13")
+        self.window.title("© Alarm für PYthon 13")
         self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+spieler1name+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
