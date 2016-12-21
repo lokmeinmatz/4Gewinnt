@@ -11,17 +11,17 @@ class Game:
 		self.field[x][y] = Value
 		self.window.setCoin(x,y,Value)
 	
-	def addCoins(x):
+	def addCoins(self, x):
 		print("Hallo")
 		print(x)
     
 	def __init__(self):
 		self.player1 = Spieler.Spieler('Hans','Red')
 		self.player2 = Spieler.Spieler('Peter','Yellow')
-		self.window = GUI.gui(7,6, self.player1.nick, self.player1.colour, self.player2.nick, self.player2.colour, scale=2)
+		self.window = GUI.gui(7,6, self.player1.nick, self.player1.colour, self.player2.nick, self.player2.colour, scale=2, cmd=self.addCoins)
 		self.field = [[0 for i in range(7)] for x in range(6)]
-		print (self.field)
-		self.window.setCoinCommand(partial(addCoins, x))
+		
+		
 
         
         

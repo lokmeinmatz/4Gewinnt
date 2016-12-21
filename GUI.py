@@ -1,14 +1,14 @@
 import tkinter as tk
 from functools import partial
-
+import Spieler
 
 class gui:
 
     #die "normale" Funktion fuer das Coin einfuegen mit dieser Funktion setzen
     # gui.setCoinCommand(befehl ohne klammern)
     
-    def setCoinCommand(self, function):
-        self.command = function
+    def setCoinCommand(self, function, value):
+        self.command = partial(function, value)
 
     def setScale(self, scale):
         self.scale = scale
@@ -50,10 +50,9 @@ class gui:
         
         #sollte die hinzufuegefunktion des normalen Programmes aufrufen
         # x ist die Reihe, mit partial - Funktion werte uebergeben
-        if(self.command != None):
-            self.command()
+        
 
-    def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale):
+    def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale, cmd):
     
         self.command = None
         
@@ -63,7 +62,7 @@ class gui:
         self.sp1color = spieler1farbe
         self.sp2color = spieler2farbe
         self.window = tk.Tk()
-        self.window.title("© Alarm für PYthon 13")
+        self.window.title("© Mohhamad Karimba")
         self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+spieler1name+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
@@ -75,7 +74,7 @@ class gui:
             tempbuttonframe.pack(side=tk.LEFT)
             tempbuttonframe.pack_propagate(False)   
 
-            button = tk.Button(tempbuttonframe, text="+", command=partial(self.addCoinCallback, i))
+            button = tk.Button(tempbuttonframe, text="+", command=partial(cmd, i))
             button.pack()
             #button.place(bordermode=tk.OUTSIDE, x=x*50*self.scale, y=0, height=20, width=)
 
@@ -97,8 +96,17 @@ class gui:
 
         self.window.mainloop()
 
-        
-#Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
-window = gui(10, 5, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2)
+      
 
-window.setCoinCommand(Null)
+def addCoin(x):
+    print(x)
+
+field = [[0 for i in range(7)] for x in range(6)]
+
+player1 = Spieler.Spieler('Hans','Red')
+player2 = Spieler.Spieler('Peter','Yellow')
+	  
+#Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
+#window = gui(10, 5, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2, cmd=addCoin)
+
+#window.setCoinCommand(Null)
