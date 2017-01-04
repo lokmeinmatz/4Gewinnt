@@ -1,6 +1,7 @@
 import tkinter as tk
 from functools import partial
 import Spieler
+import random
 
 class gui:
 
@@ -38,9 +39,9 @@ class gui:
         if value == 0:
             fill_color = "white"
         elif value == 1:
-            fill_color = self.sp1color
+            fill_color = self.sp1.colour
         elif value == 2:
-            fill_color = self.sp2color
+            fill_color = self.sp2.colour
         else:
             fill_color = "red"
 
@@ -60,18 +61,18 @@ class gui:
     def setAAAKTIVERplayer(self, name):
         self.spieleristdrann.configure(text="Spieler "+name+" ist drann")
 
-    def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale):
+    def __init__(self, x, y, spieler1, spieler2, active, scale):
     
         
         self.setScale(scale)
         self.breite = x
         self.leange = y
-        self.sp1color = spieler1farbe
-        self.sp2color = spieler2farbe
+        self.sp1 = spieler1
+        self.sp2 = spieler2
         self.window = tk.Tk()
         self.window.title("© Mohhamad Karimba")
         self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
-        self.spieleristdrann = tk.Label(self.window, text="Spieler "+spieler1name+" ist drann")
+        self.spieleristdrann = tk.Label(self.window, text="Spieler "+active.nick+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
         self.buttonframe = tk.Frame(self.window, width=x*50*self.scale)
         #die add buttons
@@ -108,11 +109,17 @@ class gui:
 
         
 
-      
 
-window = gui(7, 6, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2)
+sp1 = Spieler.Sp("Peter", "yellow")
+sp2 = Spieler.Sp("Kevin", "green")
+activeplayer = sp2
+if random.randint(0, 1) == 0:
+    activeplayer = sp1
+
+
+window = gui(7, 6, spieler1=sp1, spieler2=sp2, active=activeplayer, scale=2)
 field = [[0 for i in range(7)] for x in range(6)]   
-      
+  
 def getValue(x, y):
     return self.field[x] [y]
         
@@ -123,15 +130,21 @@ def setValue(x, y, Value):
 
 def addCoin(x):
     print(x)
-    setValue(x, 2, 1)
-    window.setAAAKTIVERplayer("Kevin")
+    if activeplayer == sp1:
+        setValue(x, 2, 1)
+        window.setAAAKTIVERplayer(sp2.nick)
+        activeplayer = sp2
+        
+    elif activeplayer == sp2:
+        setValue(x, 2, 2)
+        window.setAAAKTIVERplayer(sp1.nick)
+        activeplayer = sp1
 
 window.setCoinCommand(addCoin)
 window.window.mainloop()
 
 
-player1 = Spieler.Spieler('Hans','Red')
-player2 = Spieler.Spieler('Peter','Yellow')
+
 	  
 #Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
 

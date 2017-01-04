@@ -20,7 +20,7 @@ class Game:
             print("Ein chip wird in Reihe "+x+"eingefuert!!")
         
     
-    def __init__(self, terminal):
+    def __init__(self):
         self.player1 = Spieler.Spieler('Hans','Red')
         self.player2 = Spieler.Spieler('Peter','Yellow')
         self.window = GUI.gui(7,6, self.player1.nick, self.player1.colour, self.player2.nick, self.player2.colour, scale=2, cmd=self.addCoins)
@@ -29,12 +29,13 @@ class Game:
         
     def checkforWin(self):
         for coin in self.field:
-        
-        
-        
-    def Gameloop():
-        while True:
+            #check tiles
             pass
+        
+        
+        
+    def Gameloop(self):
+        print("Game started")
 
         
         
