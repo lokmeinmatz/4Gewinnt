@@ -54,7 +54,7 @@ class gui:
 
     def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale, cmd):
     
-        self.command = None
+        self.command = cmd
         
         self.setScale(scale)
         self.breite = x
@@ -107,6 +107,6 @@ player1 = Spieler.Spieler('Hans','Red')
 player2 = Spieler.Spieler('Peter','Yellow')
 	  
 #Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
-#window = gui(10, 5, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2, cmd=addCoin)
+window = gui(10, 5, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2, cmd=addCoin)
 
 #window.setCoinCommand(Null)
