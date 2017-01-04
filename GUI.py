@@ -61,9 +61,16 @@ class gui:
     def setAAAKTIVERplayer(self, name):
         self.spieleristdrann.configure(text="Spieler "+name+" ist drann")
 
+    def eventtimer(self):
+        #alle events werden nach 0.2 sec gecalled.
+
+        self.window.after(200, self.eventtimer)
+
+
     def __init__(self, x, y, spieler1, spieler2, active, scale):
     
-        
+
+
         self.setScale(scale)
         self.breite = x
         self.leange = y
@@ -105,23 +112,6 @@ class gui:
 
                 self.setCoin(xx, yy, 0)
 
-        
-
-        
 
 
 
-
-
-
-
-
-
-
-
-
-
-	  
-#Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
-
-#window.setCoinCommand(Null)
