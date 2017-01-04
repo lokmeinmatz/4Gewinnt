@@ -1,7 +1,7 @@
 import tkinter as tk
 from functools import partial
 import Spieler
-import random
+
 
 class gui:
 
@@ -110,39 +110,14 @@ class gui:
         
 
 
-sp1 = Spieler.Sp("Peter", "yellow")
-sp2 = Spieler.Sp("Kevin", "green")
-activeplayer = sp2
-if random.randint(0, 1) == 0:
-    activeplayer = sp1
 
 
-window = gui(7, 6, spieler1=sp1, spieler2=sp2, active=activeplayer, scale=2)
-field = [[0 for i in range(7)] for x in range(6)]   
-  
-def getValue(x, y):
-    return field[x] [y]
-        
-def setValue(x, y, Value):
-    field[y][x] = Value
-    window.setCoin(x,y,Value)      
 
 
-def addCoin(x):
-    print(x)
-    global activeplayer
-    if activeplayer == sp1:
-        setValue(x, 2, 1)
-        window.setAAAKTIVERplayer(sp2.nick)
-        activeplayer = sp2
-        
-    elif activeplayer == sp2:
-        setValue(x, 2, 2)
-        window.setAAAKTIVERplayer(sp1.nick)
-        activeplayer = sp1
 
-window.setCoinCommand(addCoin)
-window.window.mainloop()
+
+
+
 
 
 
