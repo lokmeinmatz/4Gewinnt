@@ -7,8 +7,14 @@ class gui:
     #die "normale" Funktion fuer das Coin einfuegen mit dieser Funktion setzen
     # gui.setCoinCommand(befehl ohne klammern)
     
-    def setCoinCommand(self, function, value):
-        self.command = partial(function, value)
+    def setCoinCommand(self, function):
+        for i in range(self.breite):
+            print(i)
+            button = self.buttonarray[i]
+            button.configure(command=partial(function, i))
+        
+        #for button in self.buttonarray:
+            
 
     def setScale(self, scale):
         self.scale = scale
@@ -50,11 +56,12 @@ class gui:
         
         #sollte die hinzufuegefunktion des normalen Programmes aufrufen
         # x ist die Reihe, mit partial - Funktion werte uebergeben
-        
-
-    def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale, cmd):
     
-        self.command = cmd
+    def setAAAKTIVERplayer(self, name):
+        self.spieleristdrann.configure(text="Spieler "+name+" ist drann")
+
+    def __init__(self, x, y, spieler1name, spieler1farbe, spieler2name, spieler2farbe, scale):
+    
         
         self.setScale(scale)
         self.breite = x
@@ -68,14 +75,19 @@ class gui:
         self.spieleristdrann.pack(side=tk.TOP)
         self.buttonframe = tk.Frame(self.window, width=x*50*self.scale)
         #die add buttons
+        
+        #array von buttons
+        self.buttonarray = []
+        
         for i in range(x):
             #partial laesst der Funktion Argumente hinzufuegen
             tempbuttonframe = tk.Frame(self.buttonframe, width=50*scale, height=20)
             tempbuttonframe.pack(side=tk.LEFT)
             tempbuttonframe.pack_propagate(False)   
 
-            button = tk.Button(tempbuttonframe, text="+", command=partial(cmd, i))
+            button = tk.Button(tempbuttonframe, text="+")
             button.pack()
+            self.buttonarray.append(button)
             #button.place(bordermode=tk.OUTSIDE, x=x*50*self.scale, y=0, height=20, width=)
 
         self.buttonframe.pack(pady=10)
@@ -94,19 +106,33 @@ class gui:
 
         
 
-        self.window.mainloop()
+        
 
       
 
+window = gui(7, 6, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2)
+field = [[0 for i in range(7)] for x in range(6)]   
+      
+def getValue(x, y):
+    return self.field[x] [y]
+        
+def setValue(x, y, Value):
+    field[y][x] = Value
+    window.setCoin(x,y,Value)      
+
+
 def addCoin(x):
     print(x)
+    setValue(x, 2, 1)
+    window.setAAAKTIVERplayer("Kevin")
 
-field = [[0 for i in range(7)] for x in range(6)]
+window.setCoinCommand(addCoin)
+window.window.mainloop()
+
 
 player1 = Spieler.Spieler('Hans','Red')
 player2 = Spieler.Spieler('Peter','Yellow')
 	  
 #Konstruktor, (Breite, Laenge, spielername 1, farbe spieler 1(auf Englisch), spielername 2, spieler 2 Farbe, Groese)
-window = gui(10, 5, spieler1name="Peter",spieler1farbe="yellow", spieler2name="Kevin", spieler2farbe="green", scale=2, cmd=addCoin)
 
 #window.setCoinCommand(Null)
