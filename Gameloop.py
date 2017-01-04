@@ -29,7 +29,7 @@ class Game:
         
     def checkforWin(self):
         for coin in self.field:
-#marcelhomo=true        
+        
         
         
     def Gameloop():
