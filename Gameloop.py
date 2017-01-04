@@ -36,7 +36,7 @@ class Game:
         self.setAddCoinCommand()
 
     def addCoin(self, x):
-        
+
 
 
         #wenn ein Knopf gedrueckt wird
@@ -57,7 +57,9 @@ class Game:
         animy = 0
         while animy < maxdown:
             animy += 1
-
+            self.setValue(x, animy, self.activeplayer.nr)
+            time.sleep(0.15)
+            self.setValue(x, animy, 0)
 
 
         #wechsel zwischen sp1 und sp2
