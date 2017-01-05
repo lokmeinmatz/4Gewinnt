@@ -12,9 +12,10 @@ class gui:
         for i in range(self.breite):
             print(i)
             button = self.buttonarray[i]
+            #partial: laess eine funktion von einem anderen Programm aufrufen und uebergibt dabei variablen
             button.configure(command=partial(function, i))
         
-        #for button in self.buttonarray:
+
             
 
     def setScale(self, scale):
