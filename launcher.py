@@ -56,9 +56,9 @@ p2BOX.pack()
 
 def startGame():
     
-    p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get())
+    p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get(), 1)
     
-    p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get())
+    p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get(), 2)
     launcher.destroy()
     
     print("start Spiel mit Spielern: "+p1.nick+" und " + p2.nick)

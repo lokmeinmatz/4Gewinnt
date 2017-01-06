@@ -36,7 +36,7 @@ class Game:
         self.y = 6
 
 
-        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=2)
+        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=3)
         self.field = [[0 for i in range(7)] for x in range(6)]
 
 
@@ -153,23 +153,4 @@ class Game:
                             print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal abwaerts")
                             self.window.openWinnerBOX(self.activeplayer)
                             break
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-        
-    def Gameloop(self):
-        print("Game started")
-
-
-
 
