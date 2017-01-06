@@ -1,5 +1,5 @@
 - [x] Kaffemaschine für den Inf-Raum kaufen
-- [ ] die Klassen planen
+- [x] die Klassen planen
       Idee: 1. Main-GameLoop
             2. Playerclass
             3. GUI-Class
@@ -7,11 +7,22 @@
             5. einer denkt sich die Logik aus
       
       
-- [X] Aufteilen (wer macht was)
-- [ ] Programmieren
-- [ ] zusammenführen
-- [ ] Testen + evtl Fehler korregieren
-- [ ] Fertig!!!
-- [x] Kekse kaufen
-- [ ] Noch mehr Kekse
+- [ ] Animationen möglich? (Alternative für time.sleep() raussuchen. mit tkinter.after()
 
+- [ ] Spiel beenden wenn ein Spieler gewonnen hat
+
+- [ ] Launcher fertig machen
+
+- [ ] Spielfeldgroeße wariierbar?
+
+- [ ] Popup "gewonnen"
+
+- [ ] Runden-counter oder Statistiken????
+
+- [ ] Test auf Apple-HighEnd-Backsteinen
+
+- [ ] Präsentation erstellen
+
+- [ ] Rechtschreibung der Kommentare korregieren :D
+
+- [ ] Methoden besser benennen/aufräumen

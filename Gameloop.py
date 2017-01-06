@@ -98,7 +98,55 @@ class Game:
 
                     tempx = x
                     tempy = y
+                    player = self.getValue(x, y)
+                    counterdown = 1
+                    counterright = 1
+                    counterdiagoup = 1
+                    counterdiagodown = 1
                     #ueberpruefungsalgorythmus
+                    #fuer jeden chip wir ueberprueft, ob der chip rechts, unten diagonal unten(rechts) oder diagonal oben rechts von dem gleichen spieler ist.
+                    #wenn ja, wird de jeweilige counter um 1 erhoeht und die temporaeren Koordinaten auf diesen neuen Chip gesetzt.
+                    #wenn iener der counter >= 4 ist. hat der spieler 4 oder mehr in einer Reihe, da der Counter fuer jeden Chip
+                    #zurueckgesetzt wird.
+
+                    while self.getValue(tempx, tempy) == player:
+                        print("Player "+str(player)+" has coin at "+str(tempx)+" "+str(tempy))
+                        if self.getValue(tempx+1, tempy) == player:
+                            counterright += 1
+                            tempx += 1
+                        elif self.getValue(tempx+1, tempy+1) == player:
+                            counterdiagoup += 1
+                            tempx += 1
+                            tempy += 1
+                        elif self.getValue(tempx+1, tempy-1) == player:
+                            counterdiagodown += 1
+                            tempx += 1
+                            tempy -= 1
+                        elif self.getValue(tempx, tempy-1) == player:
+                            counterdown += 1
+                            tempy -= 1
+                        else:
+                            break
+
+
+                        if counterdown >= 4:
+                            print("Gewonnen hat "+str(player)+" mit senkrecht")
+                            break
+                        if counterright >= 4:
+                            print("Gewonnen hat "+str(player)+" mit waagerecht")
+                            break
+
+                        if counterdiagoup >= 4:
+                            print("Gewonnen hat "+str(player)+" mit diagonal aufwaerts")
+                            break
+
+                        if counterdiagodown >= 4:
+                            print("Gewonnen hat "+str(player)+" mit diagonal abwaerts")
+                            break
+
+
+
+
 
 
 
