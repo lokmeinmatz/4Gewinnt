@@ -24,8 +24,8 @@ class Game:
     def __init__(self, p1, p2):
         print("Spiel startet")
         #die beiden Spielerobjekte, speichern Nick und Farbe
-        self.sp1 = Spieler.Sp("Peter", "yellow")
-        self.sp2 = Spieler.Sp("Kevin", "green")
+        self.sp1 = p1
+        self.sp2 = p2
 
         #Waehlt zufaelligen Startspieler aus
         self.activeplayer = self.sp2
@@ -67,18 +67,24 @@ class Game:
             return
 
         #Wechsel zwischen spieler1 und spieler2
+
+        self.setValue(x, maxdown, self.activeplayer.nr)
+
+
+
+
+
+        self.checkforWin()
+
         if self.activeplayer == self.sp1:
-            self.setValue(x, maxdown, 1)
             self.window.setAAAKTIVERplayer(self.sp2.nick)
+
             self.activeplayer = self.sp2
 
         elif self.activeplayer == self.sp2:
             self.setValue(x, maxdown, 2)
             self.window.setAAAKTIVERplayer(self.sp1.nick)
             self.activeplayer = self.sp1
-
-
-        self.checkforWin()
 
     def setAddCoinCommand(self):
         self.window.setCoinCommand(self.addCoin)
@@ -130,18 +136,22 @@ class Game:
 
 
                         if counterdown >= 4:
-                            print("Gewonnen hat "+str(player)+" mit senkrecht")
+                            print("Gewonnen hat "+self.activeplayer.nick+" mit senkrecht")
+                            self.window.openWinnerBOX(self.activeplayer)
                             break
                         if counterright >= 4:
-                            print("Gewonnen hat "+str(player)+" mit waagerecht")
+                            print("Gewonnen hat "+self.activeplayer.nick+" mit waagerecht")
+                            self.window.openWinnerBOX(self.activeplayer)
                             break
 
                         if counterdiagoup >= 4:
-                            print("Gewonnen hat "+str(player)+" mit diagonal aufwaerts")
+                            print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal aufwaerts")
+                            self.window.openWinnerBOX(self.activeplayer)
                             break
 
                         if counterdiagodown >= 4:
-                            print("Gewonnen hat "+str(player)+" mit diagonal abwaerts")
+                            print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal abwaerts")
+                            self.window.openWinnerBOX(self.activeplayer)
                             break
 
 

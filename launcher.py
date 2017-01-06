@@ -4,13 +4,18 @@ import Gameloop
 
 def updateColorp2(x):
     print(x)
-    p2COLOR.config(bg=p1COLORvar.get())
+    p2COLOR.config(bg=p2COLORvar.get())
     
 def updateColorp1(x):
     print(x)
     p1COLOR.config(bg=p1COLORvar.get())
 
+
+
 launcher = tk.Tk()
+launcher.minsize(width=350, height=100)
+launcher.title("4Gewinnt™ Launcher")
+
 
 p1BOX = tk.Frame(launcher)
 
@@ -38,7 +43,7 @@ pl2LABEL.pack(side=tk.LEFT)
 
 p2COLORvar = tk.StringVar(p2BOX)
 p2COLORvar.set("blue")
-p2COLOR = tk.OptionMenu(p2BOX, p1COLORvar, "blue", "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp2)
+p2COLOR = tk.OptionMenu(p2BOX, p2COLORvar, "blue", "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp2)
 p2COLOR.pack(side=tk.RIGHT)
 
 p2NAME = tk.Entry(p2BOX)
@@ -54,7 +59,7 @@ def startGame():
     p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get())
     
     p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get())
-    
+    launcher.destroy()
     
     print("start Spiel mit Spielern: "+p1.nick+" und " + p2.nick)
     game = Gameloop.Game(p1, p2)

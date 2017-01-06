@@ -14,9 +14,18 @@ class gui:
             button = self.buttonarray[i]
             #partial: laess eine funktion von einem anderen Programm aufrufen und uebergibt dabei variablen
             button.configure(command=partial(function, i))
-        
 
-            
+    def closeAll(self):
+        self.winnerbox.destroy()
+        self.window.destroy()
+
+    def openWinnerBOX(self, player):
+        self.winnerbox = tk.Toplevel()
+        self.winnerbox.title(player.nick+" hat gewonnen")
+        msg = tk.Message(self.winnerbox, text="Herzlichen Glückwunsch.").pack()
+        msg2 = tk.Message(self.winnerbox, text=player.nick+" ist halt besser. Kann man nix machen.").pack()
+        bttn = tk.Button(self.winnerbox, text="Spiel beenden", command=self.closeAll).pack()
+
 
     def setScale(self, scale):
         self.scale = scale
@@ -71,7 +80,7 @@ class gui:
         self.sp1 = spieler1
         self.sp2 = spieler2
         self.window = tk.Tk()
-        self.window.title("© Mohhamad Karimba")
+        self.window.title("4Gewinnt™ beta 0.3")
         self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+active.nick+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
