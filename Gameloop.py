@@ -21,7 +21,7 @@ class Game:
 
         
     
-    def __init__(self):
+    def __init__(self, p1, p2):
         print("Spiel startet")
         #die beiden Spielerobjekte, speichern Nick und Farbe
         self.sp1 = Spieler.Sp("Peter", "yellow")
@@ -149,7 +149,7 @@ class Game:
 
 
 
-#marcelhomo=true
+
 
 
 
@@ -161,5 +161,5 @@ class Game:
         print("Game started")
 
 
-game = Game()
+
 
