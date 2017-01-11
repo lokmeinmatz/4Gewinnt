@@ -9,19 +9,19 @@
       
 - [ ] Animationen möglich? (Alternative für time.sleep() raussuchen. mit tkinter.after()
 
-- [ ] Spiel beenden wenn ein Spieler gewonnen hat
+- [x] Spiel beenden wenn ein Spieler gewonnen hat
 
-- [ ] Launcher fertig machen
+- [x] Launcher fertig machen
 
 - [ ] Spielfeldgroeße wariierbar?
 
-- [ ] Popup "gewonnen"
+- [x] Popup "gewonnen"
 
 - [ ] Runden-counter oder Statistiken????
 
 - [ ] Test auf Apple-HighEnd-Backsteinen
 
-- [ ] Präsentation erstellen
+- [~] Präsentation erstellen
 
 - [ ] Rechtschreibung der Kommentare korregieren :D
 
