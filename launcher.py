@@ -2,15 +2,30 @@ import tkinter as tk
 import Spieler
 import Gameloop
 
+
+
 def updateColorp2(x):
-    print(x)
-    p2COLOR.config(bg=p2COLORvar.get())
+    global lastp2Color
+    if not p2COLORvar.get() == p1COLORvar.get():
+        print(x)
+        p2COLOR.config(bg=p2COLORvar.get())
+        lastp2Color = p2COLORvar.get()
+    else:
+        p2COLORvar.set(lastp2Color)
+
     
 def updateColorp1(x):
-    print(x)
-    p1COLOR.config(bg=p1COLORvar.get())
+    global lastp1Color
+    if not p1COLORvar.get() == p2COLORvar.get():
+        print(x)
+        p1COLOR.config(bg=p1COLORvar.get())
+        lastp1Color = p1COLORvar.get()
+    else:
+        p1COLORvar.set(lastp1Color)
 
-
+        
+lastp1Color = "red"
+lastp2Color = "yellow"
 
 launcher = tk.Tk()
 launcher.minsize(width=350, height=100)
@@ -25,9 +40,10 @@ pl1LABEL.pack(side=tk.LEFT)
 
 
 p1COLORvar = tk.StringVar(p1BOX)
-p1COLORvar.set("blue")
-p1COLOR = tk.OptionMenu(p1BOX, p1COLORvar, "blue", "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp1)
+p1COLORvar.set("red")
+p1COLOR = tk.OptionMenu(p1BOX, p1COLORvar, "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp1)
 p1COLOR.pack(side=tk.RIGHT)
+p1COLOR.config(bg=p1COLORvar.get())
 
 p1NAME = tk.Entry(p1BOX)
 p1NAME.pack(side=tk.RIGHT)
@@ -42,9 +58,10 @@ pl2LABEL.pack(side=tk.LEFT)
 
 
 p2COLORvar = tk.StringVar(p2BOX)
-p2COLORvar.set("blue")
-p2COLOR = tk.OptionMenu(p2BOX, p2COLORvar, "blue", "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp2)
+p2COLORvar.set("yellow")
+p2COLOR = tk.OptionMenu(p2BOX, p2COLORvar, "red", "chocolate", "yellow", "gold", "lime green", "purple", command=updateColorp2)
 p2COLOR.pack(side=tk.RIGHT)
+p2COLOR.config(bg=p2COLORvar.get())
 
 p2NAME = tk.Entry(p2BOX)
 p2NAME.pack(side=tk.RIGHT)
