@@ -80,7 +80,7 @@ class gui:
         self.sp1 = spieler1
         self.sp2 = spieler2
         self.window = tk.Tk()
-        self.window.title("4Gewinnt™ beta 0.3")
+        self.window.title("4Gewinnt™ 1.0")
         self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+active.nick+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
