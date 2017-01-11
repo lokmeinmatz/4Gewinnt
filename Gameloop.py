@@ -10,6 +10,7 @@ class Game:
     def getValue(self, x, y):
         try:
             return self.field[y] [x]
+            #indexerror wenn abfrage ausserhalb vom Spielfeld
         except IndexError :
             return 0
 
@@ -96,6 +97,21 @@ class Game:
         self.window.setCoinCommand(self.addCoin)
         print(self.addCoin)
         self.window.window.mainloop()
+        
+        
+    def restart(self):
+        for x in range(len(self.field)):
+            for y in range(len(self.field[1])):
+                self.setValue(y, x, 0)
+        
+        self.win = False
+                
+        self.activeplayer = self.sp2
+        if random.randint(0, 1) == 0:
+            self.activeplayer = self.sp1
+            
+        self.window.winnerbox.destroy()
+    
 
     def checkforWin(self):
     
@@ -151,27 +167,27 @@ class Game:
 
                         if counterdown >= 4:
                             print("Gewonnen hat "+self.activeplayer.nick+" mit senkrecht")
-                            self.window.openWinnerBOX(self.activeplayer)
+                            self.window.openWinnerBOX(self.activeplayer, self.restart)
                             self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
                             self.win = True
                             break
                         if counterright >= 4:
                             print("Gewonnen hat "+self.activeplayer.nick+" mit waagerecht")
-                            self.window.openWinnerBOX(self.activeplayer)
+                            self.window.openWinnerBOX(self.activeplayer, self.restart)
                             self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
                             self.win = True
                             break
 
                         if counterdiagoup >= 4:
                             print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal aufwaerts")
-                            self.window.openWinnerBOX(self.activeplayer)
+                            self.window.openWinnerBOX(self.activeplayer, self.restart)
                             self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
                             self.win = True
                             break
 
                         if counterdiagodown >= 4:
                             print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal abwaerts")
-                            self.window.openWinnerBOX(self.activeplayer)
+                            self.window.openWinnerBOX(self.activeplayer, self.restart)
                             self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
                             self.win = True
                             break

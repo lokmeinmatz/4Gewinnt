@@ -19,12 +19,15 @@ class gui:
         self.winnerbox.destroy()
         self.window.destroy()
 
-    def openWinnerBOX(self, player):
+        
+        
+    def openWinnerBOX(self, player, restartcmd):
         self.winnerbox = tk.Toplevel()
         self.winnerbox.title(player.nick+" hat gewonnen")
         msg = tk.Message(self.winnerbox, text="Herzlichen Glückwunsch.").pack()
         msg2 = tk.Message(self.winnerbox, text=player.nick+" ist halt besser. Kann man nix machen.").pack()
         bttn = tk.Button(self.winnerbox, text="Spiel beenden", command=self.closeAll).pack()
+        bttnrestart = tk.Button(self.winnerbox, text="Neues Spiel", command=restartcmd).pack()
 
 
     def setScale(self, scale):
