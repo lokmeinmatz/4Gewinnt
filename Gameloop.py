@@ -41,7 +41,7 @@ class Game:
 
         self.win = False
 
-        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=3)
+        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=2.5)
         self.field = [[0 for i in range(self.x)] for j in range(self.y)]
 
 
