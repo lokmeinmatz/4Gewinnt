@@ -33,13 +33,16 @@ class Game:
         if random.randint(0, 1) == 0:
             self.activeplayer = self.sp1
 
+        #Felder in x und y , Variabel, sielfeld wird dementsprechend groesser, kleiner
+        #Falls Nicht mehr alle Felder sichtbar sind, x und y reduzieren oder bei der GUI-Erstellung (s. self.window = GUI)
+        #scale kleiner machen
         self.x = 7
         self.y = 6
 
         self.win = False
 
-        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=2)
-        self.field = [[0 for i in range(7)] for x in range(6)]
+        self.window = GUI.gui(self.x, self.y, spieler1=self.sp1, spieler2=self.sp2, active=self.activeplayer, scale=3)
+        self.field = [[0 for i in range(self.x)] for j in range(self.y)]
 
 
 
@@ -117,21 +120,26 @@ class Game:
     
         #print fuer debugging
         for y in range(len(self.field)):
-            #loop durch jede Zeile >> bie einem Stein != 0 alle Felder neben, diagonal hoch und oben uueberpruefen
+            #loop durch jede Zeile >> printe Zeile fue Debugging
             row = self.field[y]
             print(row)
     
         # die Ueberpruefung ob und wer gewonnen hat
+        #verbesserter Algorithmus als vorher, für alten siehe GitHub
         for y in range(len(self.field)):
             #loop durch jede Zeile >> bie einem Stein != 0 alle Felder neben, diagonal hoch und oben uueberpruefen
             row = self.field[y]
             
 
             for x in range(len(row)):
+                # Nur ueberpruefen wenn Feld nicht leer ist
                 if not self.getValue(x, y) == 0:
                     print("check "+str(self.getValue(x, y))+" at "+str(x)+" "+str(y))
 
+                    #Koordinaten ab denen man nach vorne, unten , diagonal prueft
 
+
+                    #Variablen die immer 1 Hoch zaehlen
                     tempx = x
                     tempy = y
                     player = self.getValue(x, y)
@@ -139,56 +147,86 @@ class Game:
                     counterright = 1
                     counterdiagoup = 1
                     counterdiagodown = 1
-                    #ueberpruefungsalgorythmus
-                    #fuer jeden chip wir ueberprueft, ob der chip rechts, unten diagonal unten(rechts) oder diagonal oben rechts von dem gleichen spieler ist.
-                    #wenn ja, wird de jeweilige counter um 1 erhoeht und die temporaeren Koordinaten auf diesen neuen Chip gesetzt.
-                    #wenn iener der counter >= 4 ist. hat der spieler 4 oder mehr in einer Reihe, da der Counter fuer jeden Chip
-                    #zurueckgesetzt wird.
 
                     while self.getValue(tempx, tempy) == player and not self.win:
-                        print("Player "+str(player)+" has coin at "+str(tempx)+" "+str(tempy))
+                        #zaehlt wie viele Chips von dem Player in nach rechts einer Reihe sind
                         if self.getValue(tempx+1, tempy) == player:
                             counterright += 1
                             tempx += 1
-                        elif self.getValue(tempx+1, tempy+1) == player and counterright == 1 and counterdiagodown == 1 and counterdown == 1:
+                        else:
+                            break
+
+                    #reset der Koordinaten zum "Ausgangsfeld"
+                    tempx = x
+                    tempy = y
+
+                    while self.getValue(tempx, tempy) == player and not self.win:
+                        # zaehlt wie viele Chips von dem Player diagonal nach oben sind
+                        if self.getValue(tempx + 1, tempy + 1) == player:
                             counterdiagoup += 1
                             tempx += 1
                             tempy += 1
-                        elif self.getValue(tempx+1, tempy-1) == player and counterright == 1 and counterdiagoup == 1 and counterdown == 1:
+                        else:
+                            break
+
+                    # reset der Koordinaten zum "Ausgangsfeld"
+                    tempx = x
+                    tempy = y
+
+                    while self.getValue(tempx, tempy) == player and not self.win:
+                        # zaehlt wie viele Chips von dem Player diagonal nach unten sind
+                        if self.getValue(tempx + 1, tempy - 1) == player:
                             counterdiagodown += 1
                             tempx += 1
                             tempy -= 1
-                        elif self.getValue(tempx, tempy-1) == player and counterright == 1 and counterdiagoup == 1 and counterdiagodown == 1:
+                        else:
+                            break
+
+                    # reset der Koordinaten zum "Ausgangsfeld"
+                    tempx = x
+                    tempy = y
+
+                    while self.getValue(tempx, tempy) == player and not self.win:
+                        # zaehlt wie viele Chips von dem Player nach unten in einer Reihe sind
+                        if self.getValue(tempx, tempy - 1) == player:
                             counterdown += 1
                             tempy -= 1
                         else:
                             break
 
 
-                        if counterdown >= 4:
-                            print("Gewonnen hat "+self.activeplayer.nick+" mit senkrecht")
-                            self.window.openWinnerBOX(self.activeplayer, self.restart)
-                            self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
-                            self.win = True
-                            break
-                        if counterright >= 4:
-                            print("Gewonnen hat "+self.activeplayer.nick+" mit waagerecht")
-                            self.window.openWinnerBOX(self.activeplayer, self.restart)
-                            self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
-                            self.win = True
-                            break
+                    #ueberpruefungsalgorythmus
+                    #fuer jeden chip wir ueberprueft, ob der chip rechts, unten diagonal unten(rechts) oder diagonal oben rechts von dem gleichen spieler ist.
+                    #wenn ja, wird de jeweilige counter um 1 erhoeht und die temporaeren Koordinaten auf diesen neuen Chip gesetzt.
+                    #wenn iener der counter >= 4 ist. hat der spieler 4 oder mehr in einer Reihe, da der Counter fuer jeden Chip
+                    #zurueckgesetzt wird.
+                    #Um Zickzack-Muster nicht zu zaehlen, sind dies individuelle while-loops.
 
-                        if counterdiagoup >= 4:
-                            print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal aufwaerts")
-                            self.window.openWinnerBOX(self.activeplayer, self.restart)
-                            self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
-                            self.win = True
-                            break
 
-                        if counterdiagodown >= 4:
-                            print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal abwaerts")
-                            self.window.openWinnerBOX(self.activeplayer, self.restart)
-                            self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
-                            self.win = True
-                            break
+                    if counterdown >= 4:
+                        print("Gewonnen hat "+self.activeplayer.nick+" mit senkrecht")
+                        self.window.openWinnerBOX(self.activeplayer, self.restart)
+                        self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
+                        self.win = True
+                        break
+                    elif counterright >= 4:
+                        print("Gewonnen hat "+self.activeplayer.nick+" mit waagerecht")
+                        self.window.openWinnerBOX(self.activeplayer, self.restart)
+                        self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
+                        self.win = True
+                        break
+
+                    elif counterdiagoup >= 4:
+                        print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal aufwaerts")
+                        self.window.openWinnerBOX(self.activeplayer, self.restart)
+                        self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
+                        self.win = True
+                        break
+
+                    elif counterdiagodown >= 4:
+                        print("Gewonnen hat "+self.activeplayer.nick+" mit diagonal abwaerts")
+                        self.window.openWinnerBOX(self.activeplayer, self.restart)
+                        self.window.setAAAKTIVERplayer(self.activeplayer.nick+" hat gewonnen.")
+                        self.win = True
+                        break
 
