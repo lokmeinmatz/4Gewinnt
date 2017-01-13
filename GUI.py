@@ -84,7 +84,7 @@ class gui:
         self.sp2 = spieler2
         self.window = tk.Tk()
         self.window.title("4Gewinnt™ 1.0")
-        self.window.iconbitmap(r"28trumpbelgium-web2-facebookJumbo.ico")
+        self.window.iconbitmap(r"Logo 4 Gewinnt.ico")
         self.spieleristdrann = tk.Label(self.window, text="Spieler "+active.nick+" ist drann")
         self.spieleristdrann.pack(side=tk.TOP)
         self.buttonframe = tk.Frame(self.window, width=x*50*self.scale)
