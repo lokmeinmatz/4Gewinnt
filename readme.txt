@@ -20,7 +20,7 @@ Tipps:
     Spielfeldgröße ist frei wählbar, in Gameloop.py in "__init__" unter "self.x" und "self.y"
 
     Skalierung der GUI in Gameloop.py in "__init__" unter "self.window = GUI()"
-    scale="" auf den passenden Faktor setzen, auch wenn bei fielen Feldern diese
+    scale="" auf den passenden Faktor setzen, auch wenn bei vielen Feldern diese
     aus dem Bildschirm rausragen
 
     PASSENDE SCALE-FAKTOREN:
