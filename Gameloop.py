@@ -123,6 +123,17 @@ class Game:
             #loop durch jede Zeile >> printe Zeile fue Debugging
             row = self.field[y]
             print(row)
+			
+		#ueberpruefen ob feld komplett voll ist
+		feldleer = False
+		for row in self.field:
+			for coin in row:
+				if coin == 0:
+					feldleer = True
+					break;
+		
+		if not feldleer:
+			print("Spielfeld ist voll. keiner hat gewonnen")
     
         # die Ueberpruefung ob und wer gewonnen hat
         #verbesserter Algorithmus als vorher, für alten siehe GitHub
