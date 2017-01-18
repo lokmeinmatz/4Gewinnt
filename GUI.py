@@ -28,6 +28,15 @@ class gui:
         msg2 = tk.Message(self.winnerbox, text=player.nick+" ist halt besser. Kann man nix machen.").pack()
         bttn = tk.Button(self.winnerbox, text="Spiel beenden", command=self.closeAll).pack()
         bttnrestart = tk.Button(self.winnerbox, text="Neues Spiel", command=restartcmd).pack()
+        
+        
+    def openNoWinnerBOX(self, restartcmd):
+        self.winnerbox = tk.Toplevel()
+        self.winnerbox.title("Keiner hat gewonnen.")
+        msg = tk.Message(self.winnerbox, text="Das Feld ist voll.").pack()
+        msg2 = tk.Message(self.winnerbox, text="Ein bisschen mehr Intelligenz waere von Vorteil.").pack()
+        bttn = tk.Button(self.winnerbox, text="Spiel beenden", command=self.closeAll).pack()
+        bttnrestart = tk.Button(self.winnerbox, text="Neues Spiel", command=restartcmd).pack()
 
 
     def setScale(self, scale):

@@ -123,17 +123,19 @@ class Game:
             #loop durch jede Zeile >> printe Zeile fue Debugging
             row = self.field[y]
             print(row)
-			
-		#ueberpruefen ob feld komplett voll ist
-		feldleer = False
-		for row in self.field:
-			for coin in row:
-				if coin == 0:
-					feldleer = True
-					break;
-		
-		if not feldleer:
-			print("Spielfeld ist voll. keiner hat gewonnen")
+            
+        #ueberpruefen ob feld komplett voll ist
+        feldleer = False
+        for row in self.field:
+            for coin in row:
+                if coin == 0:
+                    feldleer = True
+                    break;
+        
+        if not feldleer:
+            print("Spielfeld ist voll. keiner hat gewonnen")
+            self.window.openNoWinnerBOX(self.restart)
+            self.win = True
     
         # die Ueberpruefung ob und wer gewonnen hat
         #verbesserter Algorithmus als vorher, für alten siehe GitHub
@@ -161,10 +163,14 @@ class Game:
 
                     while self.getValue(tempx, tempy) == player and not self.win:
                         #zaehlt wie viele Chips von dem Player in nach rechts einer Reihe sind
+                        if tempx < 0 or tempx > self.x or tempy < 0 or tempy > self.y:
+                            break
                         if self.getValue(tempx+1, tempy) == player:
                             counterright += 1
                             tempx += 1
+                            print("--+1 nach rechts")
                         else:
+                            print("nach rechts nix")
                             break
 
                     #reset der Koordinaten zum "Ausgangsfeld"
@@ -173,11 +179,16 @@ class Game:
 
                     while self.getValue(tempx, tempy) == player and not self.win:
                         # zaehlt wie viele Chips von dem Player diagonal nach oben sind
-                        if self.getValue(tempx + 1, tempy + 1) == player:
+                        if tempx < 0 or tempx > self.x or tempy < 0 or tempy > self.y:
+                            break
+                        
+                        if self.getValue(tempx + 1, tempy - 1) == player:
                             counterdiagoup += 1
                             tempx += 1
-                            tempy += 1
+                            tempy -= 1
+                            print("--+1 nach diaup")
                         else:
+                            print("nach diaup nix")
                             break
 
                     # reset der Koordinaten zum "Ausgangsfeld"
@@ -186,11 +197,15 @@ class Game:
 
                     while self.getValue(tempx, tempy) == player and not self.win:
                         # zaehlt wie viele Chips von dem Player diagonal nach unten sind
-                        if self.getValue(tempx + 1, tempy - 1) == player:
+                        if tempx < 0 or tempx > self.x or tempy < 0 or tempy > self.y:
+                            break
+                        if self.getValue(tempx + 1, tempy + 1) == player:
                             counterdiagodown += 1
                             tempx += 1
-                            tempy -= 1
+                            tempy += 1
+                            print("--+1 nach diadown")
                         else:
+                            print("nach diadown nix")
                             break
 
                     # reset der Koordinaten zum "Ausgangsfeld"
@@ -199,10 +214,14 @@ class Game:
 
                     while self.getValue(tempx, tempy) == player and not self.win:
                         # zaehlt wie viele Chips von dem Player nach unten in einer Reihe sind
-                        if self.getValue(tempx, tempy - 1) == player:
+                        if tempx < 0 or tempx > self.x or tempy < 0 or tempy > self.y:
+                            break
+                        if self.getValue(tempx, tempy + 1) == player:
                             counterdown += 1
-                            tempy -= 1
+                            tempy += 1
+                            print(str(tempx)+" "+str(tempy)+"--+1 nach unten")
                         else:
+                            print("nach unten nix")
                             break
 
 

@@ -72,14 +72,14 @@ p2BOX.pack()
 
 
 def startGame():
-    
-    p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get(), 1)
-    
-    p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get(), 2)
-    launcher.destroy()
-    
-    print("start Spiel mit Spielern: "+p1.nick+" und " + p2.nick)
-    game = Gameloop.Game(p1, p2)
+    if p1NAME.get()and p2NAME.get():
+        p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get(), 1)
+        
+        p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get(), 2)
+        launcher.destroy()
+        
+        print("start Spiel mit Spielern: "+p1.nick+" und " + p2.nick)
+        game = Gameloop.Game(p1, p2)
     #hier dann das Objekt 4gewinnt erstellen mit boolean terminal = true/false
 
 startbutton = tk.Button(launcher, text="Start", command=startGame)
