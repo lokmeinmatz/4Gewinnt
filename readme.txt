@@ -10,7 +10,7 @@
 
                    von Matthias, Philipp, Marcel, Spiridon
 
-                      Friedrich-Ebert-Gymnasuim Berlin
+                      Friedrich-Ebert-Gymnasium Berlin
 
 
 
