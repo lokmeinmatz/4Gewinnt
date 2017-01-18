@@ -7,13 +7,13 @@
             5. einer denkt sich die Logik aus
       
       
-- [ ] Animationen möglich? (Alternative für time.sleep() raussuchen. mit tkinter.after()
+- [x] Animationen möglich? (Alternative für time.sleep() raussuchen. mit tkinter.after()
 
 - [x] Spiel beenden wenn ein Spieler gewonnen hat
 
 - [x] Launcher fertig machen
 
-- [ ] Spielfeldgroeße wariierbar?
+- [x] Spielfeldgroeße wariierbar?
 
 - [x] Popup "gewonnen"
 
@@ -23,6 +23,6 @@
 
 - [~] Präsentation erstellen
 
-- [ ] Rechtschreibung der Kommentare korregieren :D
+- [x] Rechtschreibung der Kommentare korregieren :D
 
 - [ ] Methoden besser benennen/aufräumen
