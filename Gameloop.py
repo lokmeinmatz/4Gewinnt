@@ -112,7 +112,7 @@ class Game:
         self.activeplayer = self.sp2
         if random.randint(0, 1) == 0:
             self.activeplayer = self.sp1
-            
+        self.window.setAAAKTIVERplayer(self.activeplayer)
         self.window.winnerbox.destroy()
     
 

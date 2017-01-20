@@ -72,7 +72,7 @@ p2BOX.pack()
 
 
 def startGame():
-    if p1NAME.get()and p2NAME.get():
+    if p1NAME.get()and p2NAME.get() and not p1NAME.get() == p2NAME.get():
         p1 = Spieler.Sp(p1NAME.get(), p1COLORvar.get(), 1)
         
         p2 = Spieler.Sp(p2NAME.get(), p2COLORvar.get(), 2)
